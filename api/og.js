@@ -21,33 +21,32 @@ export default async function handler(req, res) {
         style: {
           width: 1200,
           height: 630,
-          backgroundColor: '#1A3A42',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
           padding: '60px 80px',
           fontFamily: 'Inter',
-          position: 'relative',
-          overflow: 'hidden',
+          backgroundImage: 'url(https://www.birjuza.ru/_public/images/og/samo.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         },
         children: [
-          // Фоновое изображение (затемнённое, уже готовое)
+          // Полупрозрачный слой затемнения
           {
-            type: 'img',
+            type: 'div',
             props: {
-              src: 'https://www.birjuza.ru/_public/images/og/samo.jpg',
               style: {
                 position: 'absolute',
-                bottom: 0,
+                top: 0,
                 left: 0,
                 width: '100%',
-                height: 'auto',
-                opacity: 0.7,
+                height: '100%',
+                backgroundColor: 'rgba(0, 0, 0, 0.45)',
               },
             },
           },
-          // Логотип (белый)
+          // Логотип
           {
             type: 'img',
             props: {
@@ -74,7 +73,6 @@ export default async function handler(req, res) {
                 maxWidth: '1000px',
                 position: 'relative',
                 zIndex: 1,
-                textShadow: '0 2px 10px rgba(0,0,0,0.5)',
               },
               children: title,
             },
@@ -92,7 +90,6 @@ export default async function handler(req, res) {
                 maxWidth: '800px',
                 position: 'relative',
                 zIndex: 1,
-                textShadow: '0 1px 6px rgba(0,0,0,0.5)',
               },
               children: category,
             },
