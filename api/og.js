@@ -27,12 +27,27 @@ export default async function handler(req, res) {
           alignItems: 'center',
           padding: '60px 80px',
           fontFamily: 'Inter',
-          backgroundImage: 'url(https://www.birjuza.ru/_public/images/og/samo.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          position: 'relative',
+          overflow: 'hidden',
+          backgroundColor: '#1A3A42',
         },
         children: [
-          // Полупрозрачный слой затемнения
+          // Фоновое изображение растянутое на весь холст
+          {
+            type: 'img',
+            props: {
+              src: 'https://www.birjuza.ru/_public/images/og/samo.jpg',
+              style: {
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              },
+            },
+          },
+          // Затемнение поверх картинки
           {
             type: 'div',
             props: {
