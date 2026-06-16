@@ -1,6 +1,6 @@
 import satori from 'satori';
+import { Resvg } from '@resvg/resvg-js';
 
-// Загружаем шрифт
 const fontRegular = fetch(
   'https://ogcdn.ru/fonts/Inter-Regular.ttf'
 ).then((res) => res.arrayBuffer());
@@ -10,7 +10,6 @@ const fontBold = fetch(
 ).then((res) => res.arrayBuffer());
 
 export default async function handler(req, res) {
-  // Берём параметры из URL
   const { searchParams } = new URL(req.url, `http://${req.headers.host}`);
   const title = searchParams.get('title') || 'Бирюза Консалтинг Групп';
   const category = searchParams.get('category') || 'Поддержка трансформации бизнеса';
@@ -31,7 +30,6 @@ export default async function handler(req, res) {
           fontFamily: 'Inter',
         },
         children: [
-          // Логотип
           {
             type: 'img',
             props: {
@@ -42,7 +40,6 @@ export default async function handler(req, res) {
               },
             },
           },
-          // Заголовок
           {
             type: 'div',
             props: {
@@ -58,7 +55,6 @@ export default async function handler(req, res) {
               children: title,
             },
           },
-          // Подзаголовок
           {
             type: 'div',
             props: {
@@ -96,8 +92,6 @@ export default async function handler(req, res) {
     }
   );
 
-  // Конвертируем SVG в PNG
-  const { Resvg } = await import('@resvg/resvg-js');
   const resvg = new Resvg(svg, {
     fitTo: {
       mode: 'width',
@@ -107,7 +101,6 @@ export default async function handler(req, res) {
   const pngData = resvg.render();
   const pngBuffer = pngData.asPng();
 
-  // Отдаём картинку
   res.setHeader('Content-Type', 'image/png');
   res.setHeader('Cache-Control', 'public, max-age=86400, immutable');
   res.status(200).send(pngBuffer);
