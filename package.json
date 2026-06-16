@@ -1,0 +1,12 @@
+{
+  "name": "og-image-generator",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "npm install"
+  },
+  "dependencies": {
+    "satori": "^0.10.13",
+    "@resvg/resvg-js": "^2.6.0"
+  }
+}
