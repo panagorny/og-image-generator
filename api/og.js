@@ -2,11 +2,11 @@ import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
 
 const fontRegular = fetch(
-  'https://ogcdn.ru/fonts/Inter-Regular.ttf'
+  'https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZhrib2Bg-4.ttf'
 ).then((res) => res.arrayBuffer());
 
 const fontBold = fetch(
-  'https://ogcdn.ru/fonts/Inter-Bold.ttf'
+  'https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuFuYMZhrib2Bg-4.ttf'
 ).then((res) => res.arrayBuffer());
 
 export default async function handler(req, res) {
