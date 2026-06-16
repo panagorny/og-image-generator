@@ -32,7 +32,7 @@ export default async function handler(req, res) {
           backgroundColor: '#1A3A42',
         },
         children: [
-          // Фоновое изображение растянутое на весь холст
+          // Фоновое изображение — растянуто принудительно
           {
             type: 'img',
             props: {
@@ -41,9 +41,8 @@ export default async function handler(req, res) {
                 position: 'absolute',
                 top: 0,
                 left: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
+                width: 1200,
+                height: 630,
               },
             },
           },
@@ -55,13 +54,13 @@ export default async function handler(req, res) {
                 position: 'absolute',
                 top: 0,
                 left: 0,
-                width: '100%',
-                height: '100%',
+                width: 1200,
+                height: 630,
                 backgroundColor: 'rgba(0, 0, 0, 0.45)',
               },
             },
           },
-          // Логотип
+          // Логотип — яркий, с подсветкой
           {
             type: 'img',
             props: {
@@ -71,6 +70,7 @@ export default async function handler(req, res) {
                 marginBottom: '50px',
                 position: 'relative',
                 zIndex: 1,
+                filter: 'drop-shadow(0 0 12px rgba(255,255,255,0.6))',
               },
             },
           },
