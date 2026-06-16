@@ -1,9 +1,0 @@
-{
-  "functions": {
-    "api/og.js": {
-      "memory": 1024,
-      "maxDuration": 10,
-      "runtime": "nodejs20.x"
-    }
-  }
-}
