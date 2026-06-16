@@ -28,8 +28,26 @@ export default async function handler(req, res) {
           alignItems: 'center',
           padding: '60px 80px',
           fontFamily: 'Inter',
+          position: 'relative',
+          overflow: 'hidden',
         },
         children: [
+          // Фоновое изображение (затемнённое, уже готовое)
+          {
+            type: 'img',
+            props: {
+              src: 'https://www.birjuza.ru/_public/images/og/samo.jpg',
+              style: {
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                width: '100%',
+                height: 'auto',
+                opacity: 0.7,
+              },
+            },
+          },
+          // Логотип (белый)
           {
             type: 'img',
             props: {
@@ -37,9 +55,12 @@ export default async function handler(req, res) {
               style: {
                 height: '80px',
                 marginBottom: '50px',
+                position: 'relative',
+                zIndex: 1,
               },
             },
           },
+          // Заголовок
           {
             type: 'div',
             props: {
@@ -51,20 +72,27 @@ export default async function handler(req, res) {
                 marginBottom: '20px',
                 lineHeight: 1.2,
                 maxWidth: '1000px',
+                position: 'relative',
+                zIndex: 1,
+                textShadow: '0 2px 10px rgba(0,0,0,0.5)',
               },
               children: title,
             },
           },
+          // Подзаголовок
           {
             type: 'div',
             props: {
               style: {
                 fontSize: '28px',
                 fontWeight: 400,
-                color: 'rgba(255, 255, 255, 0.8)',
+                color: 'rgba(255, 255, 255, 0.9)',
                 textAlign: 'center',
                 lineHeight: 1.4,
                 maxWidth: '800px',
+                position: 'relative',
+                zIndex: 1,
+                textShadow: '0 1px 6px rgba(0,0,0,0.5)',
               },
               children: category,
             },
