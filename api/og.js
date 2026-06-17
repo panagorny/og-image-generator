@@ -37,7 +37,7 @@ export default async function handler(req, res) {
           {
             type: 'img',
             props: {
-              src: 'https://www.birjuza.ru/_public/images/og/samo.jpg',
+              src: 'https://www.birjuza.ru/_public/images/og/og_main.jpg',
               width: 1200,
               height: 630,
               style: {
