@@ -66,11 +66,11 @@ export default async function handler(req, res) {
             props: {
               src: 'https://www.birjuza.ru/_template/main/images/webp/logo_bw_rus.png',
               style: {
-                height: '80px',
+                height: '110px',
                 marginBottom: '50px',
                 position: 'relative',
                 zIndex: 1,
-                filter: 'drop-shadow(0 0 12px rgba(255,255,255,0.7))',
+                filter: 'drop-shadow(0 0 14px rgba(255,255,255,0.8))',
               },
             },
           },
