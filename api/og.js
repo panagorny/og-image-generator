@@ -1,5 +1,6 @@
 import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
+import sharp from 'sharp';
 
 const fontRegular = fetch(
   'https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZhrib2Bg-4.ttf'
@@ -32,11 +33,10 @@ export default async function handler(req, res) {
           backgroundColor: '#1A3A42',
         },
         children: [
-          // Фоновое изображение — растянуто принудительно
           {
             type: 'img',
             props: {
-              src: 'https://www.birjuza.ru/_public/images/og/og_main.jpg',
+              src: 'https://www.birjuza.ru/_public/images/og/samo.jpg',
               style: {
                 position: 'absolute',
                 top: 0,
@@ -46,7 +46,6 @@ export default async function handler(req, res) {
               },
             },
           },
-          // Затемнение поверх картинки
           {
             type: 'div',
             props: {
@@ -60,7 +59,6 @@ export default async function handler(req, res) {
               },
             },
           },
-          // Логотип — яркий, с подсветкой
           {
             type: 'img',
             props: {
@@ -70,11 +68,10 @@ export default async function handler(req, res) {
                 marginBottom: '40px',
                 position: 'relative',
                 zIndex: 1,
-                filter: 'drop-shadow(0 0 14px rgba(255,255,255,0.8))',
+                filter: 'drop-shadow(0 0 20px rgba(255,255,255,0.8))',
               },
             },
           },
-          // Заголовок
           {
             type: 'div',
             props: {
@@ -92,7 +89,6 @@ export default async function handler(req, res) {
               children: title,
             },
           },
-          // Подзаголовок
           {
             type: 'div',
             props: {
@@ -132,16 +128,22 @@ export default async function handler(req, res) {
     }
   );
 
+  // Рендерим SVG в PNG
   const resvg = new Resvg(svg, {
     fitTo: {
       mode: 'width',
       value: 1200,
     },
   });
-  const pngData = resvg.render();
-  const pngBuffer = pngData.asPng();
+  const pngBuffer = resvg.render().asPng();
 
-  res.setHeader('Content-Type', 'image/png');
+  // Конвертируем PNG в JPEG с качеством 80%
+  const jpegBuffer = await sharp(pngBuffer)
+    .jpeg({ quality: 80 })
+    .toBuffer();
+
+  // Отдаём JPEG
+  res.setHeader('Content-Type', 'image/jpeg');
   res.setHeader('Cache-Control', 'public, max-age=86400, immutable');
-  res.status(200).send(pngBuffer);
+  res.status(200).send(jpegBuffer);
 }
