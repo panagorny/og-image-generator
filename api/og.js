@@ -33,19 +33,21 @@ export default async function handler(req, res) {
           backgroundColor: '#1A3A42',
         },
         children: [
+          // Фоновое изображение
           {
             type: 'img',
             props: {
               src: 'https://www.birjuza.ru/_public/images/og/samo.jpg',
+              width: 1200,
+              height: 630,
               style: {
                 position: 'absolute',
                 top: 0,
                 left: 0,
-                width: 1200,
-                height: 630,
               },
             },
           },
+          // Затемнение
           {
             type: 'div',
             props: {
@@ -59,12 +61,14 @@ export default async function handler(req, res) {
               },
             },
           },
+          // Логотип — 96px, отступ 40px
           {
             type: 'img',
             props: {
               src: 'https://www.birjuza.ru/_template/main/images/webp/logo_bw_rus.png',
+              width: 192,
+              height: 96,
               style: {
-                height: '96px',
                 marginBottom: '40px',
                 position: 'relative',
                 zIndex: 1,
@@ -72,6 +76,7 @@ export default async function handler(req, res) {
               },
             },
           },
+          // Заголовок
           {
             type: 'div',
             props: {
@@ -89,6 +94,7 @@ export default async function handler(req, res) {
               children: title,
             },
           },
+          // Подзаголовок
           {
             type: 'div',
             props: {
@@ -112,37 +118,17 @@ export default async function handler(req, res) {
       width: 1200,
       height: 630,
       fonts: [
-        {
-          name: 'Inter',
-          data: await fontBold,
-          weight: 700,
-          style: 'normal',
-        },
-        {
-          name: 'Inter',
-          data: await fontRegular,
-          weight: 400,
-          style: 'normal',
-        },
+        { name: 'Inter', data: await fontBold, weight: 700, style: 'normal' },
+        { name: 'Inter', data: await fontRegular, weight: 400, style: 'normal' },
       ],
     }
   );
 
-  // Рендерим SVG в PNG
-  const resvg = new Resvg(svg, {
-    fitTo: {
-      mode: 'width',
-      value: 1200,
-    },
-  });
+  const resvg = new Resvg(svg, { fitTo: { mode: 'width', value: 1200 } });
   const pngBuffer = resvg.render().asPng();
 
-  // Конвертируем PNG в JPEG с качеством 80%
-  const jpegBuffer = await sharp(pngBuffer)
-    .jpeg({ quality: 80 })
-    .toBuffer();
+  const jpegBuffer = await sharp(pngBuffer).jpeg({ quality: 80 }).toBuffer();
 
-  // Отдаём JPEG
   res.setHeader('Content-Type', 'image/jpeg');
   res.setHeader('Cache-Control', 'public, max-age=86400, immutable');
   res.status(200).send(jpegBuffer);
