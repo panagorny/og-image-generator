@@ -66,7 +66,7 @@ export default async function handler(req, res) {
             type: 'img',
             props: {
               src: 'https://www.birjuza.ru/_template/main/images/webp/logo_bw_rus.png',
-              width: 192,
+              width: 363,
               height: 96,
               style: {
                 marginBottom: '40px',
