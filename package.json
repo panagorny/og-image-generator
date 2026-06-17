@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "satori": "^0.10.13",
-    "@resvg/resvg-js": "^2.6.0"
+    "@resvg/resvg-js": "^2.6.0",
+    "sharp": "^0.33.2"
   }
 }
