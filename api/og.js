@@ -36,7 +36,7 @@ export default async function handler(req, res) {
           {
             type: 'img',
             props: {
-              src: 'https://www.birjuza.ru/_public/images/og/samo.jpg',
+              src: 'https://www.birjuza.ru/_public/images/og/og_main.jpg',
               style: {
                 position: 'absolute',
                 top: 0,
@@ -70,7 +70,7 @@ export default async function handler(req, res) {
                 marginBottom: '50px',
                 position: 'relative',
                 zIndex: 1,
-                filter: 'drop-shadow(0 0 12px rgba(255,255,255,0.6))',
+                filter: 'drop-shadow(0 0 12px rgba(255,255,255,0.7))',
               },
             },
           },
